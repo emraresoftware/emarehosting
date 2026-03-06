@@ -1,0 +1,28 @@
+{
+  "_comment": "EmareCloud Deploy Manifesti — Bu dosya EmareCloud paneli tarafından okunur. Manuel değiştirme.",
+  "slug": "emarehosting",
+  "name": "Emare Hosting",
+  "github_repo": "emraresoftware/emarehosting",
+  "branch": "main",
+  "dc": "local",
+  "server_host": "",
+  "server_ssh_port": 22,
+  "remote_path": "/opt/emarehosting",
+  "stack": "python-gunicorn",
+  "port": 8323,
+  "webroot": "/opt/emarehosting",
+  "domain": "",
+  "pre_deploy": [],
+  "deploy_commands": [
+    "cd /opt/emarehosting",
+    "git pull origin main",
+    "source venv/bin/activate",
+    "pip install -r requirements.txt --quiet",
+    "systemctl restart emarehosting"
+  ],
+  "restart_command": "systemctl restart emarehosting",
+  "health_check_url": "http://localhost:8323",
+  "webhooks_enabled": true,
+  "auto_deploy_on_push": true,
+  "notify_on_fail": true
+}
